@@ -1,0 +1,135 @@
+{
+  "info": {
+    "name": "Part 1 - REST API",
+    "description": "Examples for the Spring Boot travel directory API. Run in order; IDs are inserted as Postman variables by the create requests.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" },
+    { "key": "cityId", "value": "1" },
+    { "key": "airportId", "value": "1" },
+    { "key": "passengerId", "value": "1" },
+    { "key": "aircraftId", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "Cities",
+      "item": [
+        {
+          "name": "Create city",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"name\":\"Seattle\",\"state\":\"Washington\",\"population\":755000}" },
+            "url": "{{baseUrl}}/api/cities"
+          },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["if (pm.response.code === 201) pm.collectionVariables.set('cityId', pm.response.json().id);"] } }]
+        },
+        {
+          "name": "List cities (page and sort)",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/cities?page=0&size=5&sort=population,desc" }
+        },
+        {
+          "name": "Get city",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/cities/{{cityId}}" }
+        },
+        {
+          "name": "Update city",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"name\":\"Seattle Metro\",\"state\":\"Washington\",\"population\":755000}" },
+            "url": "{{baseUrl}}/api/cities/{{cityId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Airports",
+      "item": [
+        {
+          "name": "Create airport",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"name\":\"Seattle-Tacoma International\",\"code\":\"SEA\",\"cityId\":{{cityId}},\"aircraftIds\":[]}" },
+            "url": "{{baseUrl}}/api/airports"
+          },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["if (pm.response.code === 201) pm.collectionVariables.set('airportId', pm.response.json().id);"] } }]
+        },
+        { "name": "List airports", "request": { "method": "GET", "url": "{{baseUrl}}/api/airports" } },
+        { "name": "Get airport", "request": { "method": "GET", "url": "{{baseUrl}}/api/airports/{{airportId}}" } },
+        {
+          "name": "Update airport",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"name\":\"Seattle-Tacoma International Airport\",\"code\":\"SEA\",\"cityId\":{{cityId}},\"aircraftIds\":[]}" },
+            "url": "{{baseUrl}}/api/airports/{{airportId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Passengers",
+      "item": [
+        {
+          "name": "Create passenger",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"firstName\":\"Jordan\",\"lastName\":\"Lee\",\"phoneNumber\":\"555-0101\",\"cityId\":{{cityId}},\"aircraftIds\":[]}" },
+            "url": "{{baseUrl}}/api/passengers"
+          },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["if (pm.response.code === 201) pm.collectionVariables.set('passengerId', pm.response.json().id);"] } }]
+        },
+        { "name": "List passengers", "request": { "method": "GET", "url": "{{baseUrl}}/api/passengers" } },
+        { "name": "Get passenger", "request": { "method": "GET", "url": "{{baseUrl}}/api/passengers/{{passengerId}}" } },
+        {
+          "name": "Update passenger",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"firstName\":\"Jordan\",\"lastName\":\"Lee\",\"phoneNumber\":\"555-0110\",\"cityId\":{{cityId}},\"aircraftIds\":[]}" },
+            "url": "{{baseUrl}}/api/passengers/{{passengerId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Aircraft",
+      "item": [
+        {
+          "name": "Create aircraft",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"type\":\"737\",\"airlineName\":\"Example Air\",\"numberOfPassengers\":180,\"passengerIds\":[{{passengerId}}],\"airportIds\":[{{airportId}}]}" },
+            "url": "{{baseUrl}}/api/aircraft"
+          },
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["if (pm.response.code === 201) pm.collectionVariables.set('aircraftId', pm.response.json().id);"] } }]
+        },
+        { "name": "List aircraft", "request": { "method": "GET", "url": "{{baseUrl}}/api/aircraft" } },
+        { "name": "Get aircraft", "request": { "method": "GET", "url": "{{baseUrl}}/api/aircraft/{{aircraftId}}" } },
+        {
+          "name": "Update aircraft",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\"type\":\"737-800\",\"airlineName\":\"Example Air\",\"numberOfPassengers\":180,\"passengerIds\":[{{passengerId}}],\"airportIds\":[{{airportId}}]}" },
+            "url": "{{baseUrl}}/api/aircraft/{{aircraftId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cleanup (run after the other requests)",
+      "item": [
+        { "name": "Delete aircraft", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/aircraft/{{aircraftId}}" } },
+        { "name": "Delete passenger", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/passengers/{{passengerId}}" } },
+        { "name": "Delete airport", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/airports/{{airportId}}" } },
+        { "name": "Delete city", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/cities/{{cityId}}" } }
+      ]
+    }
+  ]
+}
