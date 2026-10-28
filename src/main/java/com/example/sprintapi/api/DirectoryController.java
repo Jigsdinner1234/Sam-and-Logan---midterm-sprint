@@ -1,16 +1,33 @@
 package com.example.sprintapi.api;
 
-import com.example.sprintapi.api.ApiDtos.*;
-import com.example.sprintapi.service.DirectoryService;
-import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.sprintapi.api.ApiDtos.AircraftRequest;
+import com.example.sprintapi.api.ApiDtos.AircraftResponse;
+import com.example.sprintapi.api.ApiDtos.AirportRequest;
+import com.example.sprintapi.api.ApiDtos.AirportResponse;
+import com.example.sprintapi.api.ApiDtos.CityRequest;
+import com.example.sprintapi.api.ApiDtos.CityResponse;
+import com.example.sprintapi.api.ApiDtos.PageResponse;
+import com.example.sprintapi.api.ApiDtos.PassengerRequest;
+import com.example.sprintapi.api.ApiDtos.PassengerResponse;
+import com.example.sprintapi.service.DirectoryService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api")

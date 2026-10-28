@@ -16,6 +16,8 @@ If you already cloned the API repository without submodules, initialize them wit
 git submodule update --init --recursive
 ```
 
+For VS Code, open `Sam-and-Logan-Midterm.code-workspace` at the repository root. It opens the API and CLI as separate workspace folders so the Java extension imports each Maven project and recognizes each project's standard `src/main/java` source root.
+
 Commit CLI changes in the CLI repository first. Then commit the updated submodule pointer in the API repository to record which CLI revision goes with that API revision.
 
 ## Requirements and running locally

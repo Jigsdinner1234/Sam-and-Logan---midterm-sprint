@@ -1,0 +1,15 @@
+{
+    "folders": [
+        {
+            "name": "REST API",
+            "path": "."
+        },
+        {
+            "name": "CLI",
+            "path": "logan_sam_sdat_midterm_cli"
+        }
+    ],
+    "settings": {
+        "java.configuration.updateBuildConfiguration": "automatic"
+    }
+}
