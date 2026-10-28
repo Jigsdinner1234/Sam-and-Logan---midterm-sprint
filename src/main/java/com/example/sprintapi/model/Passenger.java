@@ -32,7 +32,7 @@ public class Passenger {
             joinColumns = @JoinColumn(name = "passenger_id"),
             inverseJoinColumns = @JoinColumn(name = "aircraft_id")
     )
-    private Set<Aircraft> aircraft = new HashSet<>();
+    private final Set<Aircraft> aircraft = new HashSet<>();
 
     protected Passenger() {
     }

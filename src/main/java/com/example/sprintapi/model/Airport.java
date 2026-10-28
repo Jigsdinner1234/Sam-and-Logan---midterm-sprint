@@ -24,7 +24,7 @@ public class Airport {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "airports")
-    private Set<Aircraft> aircraft = new HashSet<>();
+    private final Set<Aircraft> aircraft = new HashSet<>();
 
     protected Airport() {
     }
