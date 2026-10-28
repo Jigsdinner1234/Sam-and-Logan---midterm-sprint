@@ -2,6 +2,22 @@
 
 Standalone Spring Boot REST API for managing cities, passengers, airports, and aircraft. It uses Spring Data JPA and an H2 relational database stored in `./data` by default. The `data/` directory is ignored by Git.
 
+## CLI repository
+
+The CLI remains an independent GitHub repository and is linked here as a Git submodule at `logan_sam_sdat_midterm_cli`, tracking its `feature/cli-implementation` branch. Clone the API repository and its CLI checkout together with:
+
+```powershell
+git clone --recurse-submodules <api-repository-url>
+```
+
+If you already cloned the API repository without submodules, initialize them with:
+
+```powershell
+git submodule update --init --recursive
+```
+
+Commit CLI changes in the CLI repository first. Then commit the updated submodule pointer in the API repository to record which CLI revision goes with that API revision.
+
 ## Requirements and running locally
 
 - Java 17+

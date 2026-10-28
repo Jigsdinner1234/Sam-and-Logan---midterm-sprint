@@ -1,0 +1,4 @@
+[submodule "logan_sam_sdat_midterm_cli"]
+	path = logan_sam_sdat_midterm_cli
+	url = https://github.com/loganm92304-cell/logan_sam_sdat_midterm_cli.git
+	branch = feature/cli-implementation
